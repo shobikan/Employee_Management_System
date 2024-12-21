@@ -1,4 +1,4 @@
-package service;
+package org.erp.employee_management.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
