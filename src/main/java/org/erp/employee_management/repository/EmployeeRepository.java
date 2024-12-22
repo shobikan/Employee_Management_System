@@ -19,7 +19,7 @@ public class EmployeeRepository {
 
     public EmployeeResponse create(EmployeeDTO employee) {
         String sql = """
-            INSERT INTO employees (first_name, last_name, email, phone, department, salary)
+            INSERT INTO Employees (first_name, last_name, email, phone, department, salary)
             VALUES (?, ?, ?, ?, ?, ?)
             RETURNING id, first_name, last_name, email, phone, department, salary
             """;
@@ -38,7 +38,7 @@ public class EmployeeRepository {
     public List<EmployeeResponse> findAll(int page, int size) {
         String sql = """
             SELECT id, first_name, last_name, email, phone, department, salary
-            FROM employees
+            FROM Employees
             ORDER BY id
             LIMIT ? OFFSET ?
             """;
@@ -52,16 +52,16 @@ public class EmployeeRepository {
     public Optional<EmployeeResponse> findById(Long id) {
         String sql = """
             SELECT id, first_name, last_name, email, phone, department, salary
-            FROM employees
+            FROM Employees
             WHERE id = ?
             """;
 
         try {
-            EmployeeResponse employee = jdbcTemplate.queryForObject(sql,
+            EmployeeResponse employeeResponse = jdbcTemplate.queryForObject(sql,
                     (rs, rowNum) -> mapToEmployeeResponse(rs),
                     id
             );
-            return Optional.ofNullable(employee);
+            return Optional.ofNullable(employeeResponse);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
@@ -69,7 +69,7 @@ public class EmployeeRepository {
 
     public Optional<EmployeeResponse> update(Long id, EmployeeDTO employee) {
         String sql = """
-            UPDATE employees
+            UPDATE Employees
             SET first_name = ?, last_name = ?, email = ?, phone = ?, department = ?, salary = ?
             WHERE id = ?
             RETURNING id, first_name, last_name, email, phone, department, salary
@@ -93,7 +93,7 @@ public class EmployeeRepository {
     }
 
     public boolean delete(Long id) {
-        String sql = "DELETE FROM employees WHERE id = ?";
+        String sql = "DELETE FROM EmployeeResponses WHERE id = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 
