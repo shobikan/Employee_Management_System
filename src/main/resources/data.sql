@@ -1,16 +1,16 @@
 -- Insert admin user (password is 'admin123' encrypted with BCrypt)
 INSERT INTO users (username, password, role)
 VALUES (
-           'admin',
-           '$2a$10$ZU.P0mFHFZ5KVXXw8yqyKeBHXf6ixDxGt.RzYT9UZVtVA5fZ5K6Y2',
+           'admin1',
+           '$2a$12$DNY0klbxhv3ifSTokucEj.s3KsOdk4fYKLwlzvUXubis57rEPspp6',
            'ADMIN'
        ) ON CONFLICT DO NOTHING;
 
 -- Insert regular user (password is 'user123' encrypted with BCrypt)
 INSERT INTO users (username, password, role)
 VALUES (
-           'user',
-           '$2a$10$ZryI0B7ZU.P0mFHFZ5KVXXw8yqyKeBHXf6ixDxGt.RzYT9UZVtVA5',
+           'user1',
+           '$2a$12$aRHCMSLLxsJ18q3RJ7JsaeJOYbFGflqP4p4RaFm9JCMUmefEBRwCK',
            'USER'
        ) ON CONFLICT DO NOTHING;
 

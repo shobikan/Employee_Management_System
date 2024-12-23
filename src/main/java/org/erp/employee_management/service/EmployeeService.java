@@ -18,13 +18,14 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     public EmployeeResponse createEmployee(EmployeeDTO employee) {
+        if (employeeRepository.existsByEmail(employee.getEmail())) {
+            throw new ValidationException("Employee with this email already exists");
+        }
         validateEmployee(employee);
         return employeeRepository.create(employee);
     }
 
-    public List<EmployeeResponse> getAllEmployees(int page, int size) {
-        return employeeRepository.findAll(page, size);
-    }
+    public List<EmployeeResponse> getAllEmployees(int page, int size) { return employeeRepository.findAll(page, size);}
 
     public Optional<EmployeeResponse> getEmployee(Long id) {
         return employeeRepository.findById(id);

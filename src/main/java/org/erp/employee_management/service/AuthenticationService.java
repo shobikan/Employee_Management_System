@@ -19,15 +19,17 @@ public class AuthenticationService {
     private final AuthenticationManager authManager;
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+
         authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
-                        request.getPassword()
-                )
-        );
+                       request.getPassword()
+              )
+       );
 
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
 
         var token = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

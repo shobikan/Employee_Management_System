@@ -43,10 +43,12 @@ public class EmployeeRepository {
             LIMIT ? OFFSET ?
             """;
 
-        return jdbcTemplate.query(sql,
+        List<EmployeeResponse> responses = jdbcTemplate.query(sql,
                 (rs, rowNum) -> mapToEmployeeResponse(rs),
-                size, page * size
+                size, (page-1) * size
         );
+        System.out.println("Responses: " + responses);
+        return responses;
     }
 
     public Optional<EmployeeResponse> findById(Long id) {
@@ -93,8 +95,18 @@ public class EmployeeRepository {
     }
 
     public boolean delete(Long id) {
-        String sql = "DELETE FROM EmployeeResponses WHERE id = ?";
-        return jdbcTemplate.update(sql, id) > 0;
+        String sql = "DELETE FROM Employees WHERE id = ?";
+        try {
+            return jdbcTemplate.update(sql, id) > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+    }
+
+    public boolean existsByEmail(String email) {
+        String sql = "SELECT COUNT(*) FROM Employees WHERE email = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, email);
+        return count != null && count > 0;
     }
 
 

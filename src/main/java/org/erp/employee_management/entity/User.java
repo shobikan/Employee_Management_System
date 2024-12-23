@@ -14,8 +14,8 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor // Make sure to include this
-@AllArgsConstructor // And this
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
     private Long id;
     private String username;
