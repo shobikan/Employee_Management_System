@@ -100,11 +100,22 @@ Path: `docs/sequence-diagrams/your-sequence-diagram.pdf`
 
 ## How to Run
 
-### Configure Database
-- Create PostgreSQL database
-- Update `application.properties` with database credentials
-
 ### Build Project
 - Clone the repository
   ```sh
   git clone <https://github.com/shobikan/Employee_Management_System.git>
+
+### Configure Database
+- Create PostgreSQL database
+- Update `application.properties` with database credentials
+
+### Run Application
+- Run the Spring Boot application
+- Access the API endpoints using Postman or any REST client
+- Use the sample data provided in `data.sql` for testing
+- Login with the sample user credentials to get JWT token
+- Use the token for accessing protected endpoints
+- Create new users and assign roles for testing user management
+- Perform CRUD operations on employees
+
+
