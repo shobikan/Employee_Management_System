@@ -17,8 +17,8 @@ spring:
       mode: always
       platform: postgresql
       # Location of schema.sql and data.sql files
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
 
 logging:
   level:

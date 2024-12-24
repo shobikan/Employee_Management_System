@@ -28,15 +28,24 @@ public class EmployeeService {
     public List<EmployeeResponse> getAllEmployees(int page, int size) { return employeeRepository.findAll(page, size);}
 
     public Optional<EmployeeResponse> getEmployee(Long id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new ValidationException("Employee with this id does not exist");
+        }
         return employeeRepository.findById(id);
     }
 
     public Optional<EmployeeResponse> updateEmployee(Long id, EmployeeDTO employee) {
+        if (!employeeRepository.existsById(id)) {
+            throw new ValidationException("Employee with this id does not exist");
+        }
         validateEmployee(employee);
         return employeeRepository.update(id, employee);
     }
 
     public boolean deleteEmployee(Long id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new ValidationException("Employee with this id does not exist");
+        }
         return employeeRepository.delete(id);
     }
 

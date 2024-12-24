@@ -109,6 +109,12 @@ public class EmployeeRepository {
         return count != null && count > 0;
     }
 
+    public boolean existsById(Long id) {
+        String sql = "SELECT COUNT(*) FROM Employees WHERE id = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id);
+        return count != null && count > 0;
+    }
+
 
     private EmployeeResponse mapToEmployeeResponse(ResultSet rs) throws SQLException {
         return EmployeeResponse.builder()

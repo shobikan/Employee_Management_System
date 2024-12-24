@@ -21,7 +21,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
-    @PostMapping("/update/{username}")
+    @PutMapping("/update/{username}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponse> updateUser(@PathVariable String username, @RequestBody UserRequest user) {
         return userService.updateUser(username, user)
