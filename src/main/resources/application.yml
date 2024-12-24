@@ -1,7 +1,7 @@
 server:
   port: 8080
-  servlet:
-    context-path: /api
+  #servlet:
+   # context-path: /api
 
 spring:
   application:
@@ -12,3 +12,14 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
 
+  sql:
+    init:
+      mode: always
+      platform: postgresql
+      # Location of schema.sql and data.sql files
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+
+logging:
+  level:
+    org.springframework.boot.sql.init: DEBUG
